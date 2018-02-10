@@ -1,6 +1,6 @@
 ---
 title: "| Data science internship audition project for Pearson IOKI 
-| Report on e-learning platform for English language learners"
+- Report on e-learning platform for English language learners"
 author: "Jacek Manko"
 date: "10 02 2018"
 output: pdf_document
@@ -17,14 +17,14 @@ nlevels(as.factor(data_ioki$learner_id))
 nlevels(data_ioki$country)
 ```
 
-A quick look at the frequences tables revealed that there were striking disproportions in terms of how many units these learners took.
+A quick look at the frequencies tables revealed that there were striking disproportions in terms of how many units these learners took.
 
 ```{r}
 sort(decreasing = T, table(data_ioki$country))
 ```
 
 
-As you can see, students from 9 countries (that took more that 500 units) accountes for around 90% of all units taken. Therefore, my first concern ist to ask if this disproportion was intended or expected and, if not, to undertake some advertising actions to promote this e-learning product in all countries involved in the study. If I narrow the numbers of countries down:
+As you can see, students from 9 countries (that took more that 500 units) account for around 90% of all units taken. Therefore, my first concern is to ask if this disproportion was intended or expected and, if not, to undertake some advertising actions to promote this e-learning product in all countries involved in the study. If I narrow the numbers of countries down:
 
 ```{r,}
 library(tidyverse)
@@ -34,7 +34,7 @@ data_ioki2 <- data_ioki %>% group_by(country) %>%
 ```
 
 
-And then calcuate the numbers of the learners:
+And then calculate the numbers of the learners:
 
 ```{r}
  data_ioki2 %>% select(learner_id, country) %>% 
@@ -57,27 +57,27 @@ plot(p)
 
 \pagebreak
 
-Interestingly, learners from Mexico, Netherlands and Oman score the worst as comapred to other countries. Noteworthy, these are the countries with the smallest numbers of learners. Clearly, there appears to be issue here, with respect to popularity and effeciency of the online workbook. Takins appropriate steps to increase effectivness of the product in these countries seems to be essenetial. Italy, however, has on average the best scores, which is even more interesting given small number of learners from that country. It might be important to have a look at who are these learners as well. 
+Interestingly, learners from Mexico, Netherlands and Oman score the worst as compared to other countries. Noteworthy, these are the countries with the smallest numbers of learners. Clearly, there appears to be issue here, with respect to popularity and efficiency of the online workbook. Taking appropriate steps to increase effectiveness of the product in these countries seems to be essential. Italy, however, has on average the best scores, which is even more interesting given small number of learners from that country. It might be important to have a look at who are these learners as well.
 
 
 
-Another important issue I'd like to shed some light on, is the extent to which all learners make use of the product.
+Another important issue I'd like to shed some light on is the extent to which all learners make use of the product.
 Consider the following frequency table:
 
 ```{r}
 sort(decreasing = T, table(data_ioki$unit))
 ```
 
-As you can clearly see, the number of learners decreases, as the number of unit increases. The last 3 units were take only by around 11% of the learners. However, since it remains uknown to me, whether all students were given the same time to work with the product, these results are difficult to interpret. It may be that some students didn't simply make it yet to the last chapters, but will do so in the future. Also, some reviews starting from unit 4 are completely missing, even for students who took last chapters, so it might be interesting to have a look why they skip these units. This question becomes more interesting, when you have a look at average scores across all available units:
+As you can clearly see, the number of learners decreases, as the number of unit increases. The last 3 units were taken only by around 11% of the learners. However, since it remains unknown to me, whether all students were given the same time to work with the product, these results are difficult to interpret. It may be that some students didn't simply make it yet to the last chapters, but will do so in the future. Also, some reviews starting from unit 4 are completely missing, even for students who took last chapters, so it might be interesting to have a look why they skip these units. This question becomes more interesting, when you have a look at average scores across all available units:
 
 ```{r}
 tapply(data_ioki2$avg_score, data_ioki2$unit, mean)
 ```
 
-You can see that learners scores on reviews 1,2,3 and 4 slightly better than on the corresponding unit. This is to be expected, since they should be already familiar the the content of the unit at the moment of doing the review. This is why maybe they decide to skip other reviews? Another important point to make, is that average results for chapters 11 and 12 are slightly lower than average score for other units. Given that these chapters are taken least often, it becomes quite interesting to have a look why is that so and what makes those chapters least popular.
+You can see that learners scores on reviews 1,2,3 and 4 slightly better than on the corresponding unit. This is to be expected, since they should be already familiar with the content of the unit at the moment of doing the review. This is why maybe they decide to skip other reviews? Another important point to make, is that average results for chapters 11 and 12 are slightly lower than average score for other units. Given that these chapters are taken least often, it becomes quite interesting to have a look why is that so and what makes those chapters least popular.
 
 
-At this point, I will address the question what else, except for the country and type of unit, have an impact on average scores? One can assume, it might be the degree of completion, because if one completes more activities within a unit, one should become more proficient at this. However, the data don't substaniate that view clearly.
+At this point, I will address the question what else, except for the country and type of unit, have an impact on average scores? One can assume, it might be the degree of completion, because if one completes more activities within a unit, one should become more proficient at this. However, the data don't substantiate that view clearly.
 
 ```{r}
 data_ioki2 <- data_ioki %>% 
@@ -94,7 +94,7 @@ Average completion rates are higher for the reviews. As we already know, average
 cor(x = data_ioki2$avg_score, data_ioki2$completion, method = "pearson")
 ```
 
-To get a big picture, let's have a look at scatter plot for these variables:
+To get a big picture, let's have a look at scatterplot for these variables:
 
 ```{r fig2, dpi = 72, echo=FALSE}
 
@@ -107,10 +107,10 @@ data_ioki2%>% select(avg_score, completion, unit)  %>%
   geom_vline(xintercept = mean(data_ioki2$avg_score), linetype="dotted", size = 1, color = "red") 
 ```
 
-For the sake of visibility, this exemplary plot show only data for the first chapter. Red dotted lines denote means, for both completion and score they are at similar level around 0.78. Blue line denotes relationship between these two variables and you can see this relationship is nonlineral. Altough both means are similar, there is no clear relationship between completion rates and average score, because there are some learners with high completion rates, and yet low average score (upper left corner) and many learners with low completion rates, but still, high average scores (lower right corner). Relationship between these two variables would require more detailed look.
+For the sake of visibility, this exemplary plot shows only data for the first chapter. Red dotted lines denote means, for both completion and score they are at similar level around 0.78. Blue line denotes relationship between these two variables and you can see this relationship is nonlinear. Although both means are similar, there is no clear relationship between completion rates and average score, because there are some learners with high completion rates, and yet low average score (upper left corner) and many learners with low completion rates, but still, high average scores (lower right corner). Relationship between these two variables would require more detailed look.
 
 
-Last, but not least, I'd to like to analyse relationship between inversation rates and average scores. One could come up with a straightforward hypothesis, that if a learner deviates from the suggested by the experts order of activites, then that learner should receive lower scores. The data suggest no such relationship.
+Last, but not least, I'd to like to analyze relationship between inversion rates and average scores. One could come up with a straightforward hypothesis, that if a learner deviates from the suggested by the experts’ order of activities then that learner should receive lower scores. The data suggest no such relationship.
 
 ```{r}
 data_ioki2 <- data_ioki %>% 
@@ -119,8 +119,7 @@ data_ioki2 <- data_ioki %>%
 cor(x = data_ioki2$avg_score, data_ioki2$inv_rate, method = "pearson")
 ```
 
-Although the correlation coeffiecient is negative, meaning the higher the scores, the lower the inversion rates, the correlation strength is very low, suggestin virtually no relationship between tho variables. An analogous plot will make a point more clearly (again, for unit 1 only).
-
+Although the correlation coefficient is negative, meaning the higher the scores, the lower the inversion rates, the correlation strength is very low, suggesting virtually no relationship between two variables. An analogous plot will make a point more clearly (again, for unit 1 only).
 
 
 ```{r fig3, dpi = 72, echo=FALSE}
@@ -136,6 +135,6 @@ data_ioki2%>% select(avg_score, inv_rate, unit)  %>%
 
 
 
-Again, although there are many learners in the lower right plot quartile, meaning they had high average scores and low inversion rates, there are other learners with either low inversion rates and low average score or high inversion rates and higt average scores. This is quite important finding suggesting that inversion rates have very little, if any, influence on the average scores. Following experts' guidance does not guarantee an optimal outcome on the  given unit.
+Again, although there are many learners in the lower right plot quartile, meaning they had high average scores and low inversion rates, there are other learners with either low inversion rates and low average score or high inversion rates and high average scores. This is quite important finding suggesting that inversion rates have very little, if any, influence on the average scores. Following experts' guidance does not guarantee an optimal outcome on the given unit.
 
-Concluding this short and concise report, this is to say, this online workbook is used differently by different students in different countries. The data point to some actions that might be taken in order to increase popularity and effectivness of the product, especially among countries with smallest learner numbers. More detailed analyses, on how exactly learners make use out of the workbook would require more precise data.
+Concluding this short and concise report, this is to say that different students in different countries use this online workbook differently. The data point to some actions that might be taken in order to increase popularity and effectiveness of the product, especially among countries with smallest learner numbers. More detailed analyses, on how exactly learners make use out of the workbook would require more precise data.
